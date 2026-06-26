@@ -1,0 +1,10 @@
+# WP-CLI com Docker Swarm
+# Para rodar wp-cli, execute diretamente no container do phpfpm:
+#
+#   docker exec -it $(docker ps -qf "name=wordpress-stack_wpphpfpm") wp <comando>
+#
+# Exemplo:
+#   docker exec -it $(docker ps -qf "name=wordpress-stack_wpphpfpm") wp plugin list
+#
+# Referência local (docker-compose):
+# ssh: 'docker-compose:phpfpm'
