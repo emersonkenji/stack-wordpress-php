@@ -90,9 +90,17 @@ MYSQL_USER=taka_example
 
 BACKUP_DATABASE=example.sql
 WORDPRESS_TABLE_PREFIX=wpog_
+```
 
 # Gerado com: echo $(htpasswd -nb admin SENHA) | sed -e s/\$/\$\$/g
+
 ADMINER_BASIC_AUTH=admin:$$apr1$$HASH_AQUI
+
+# Caso de erro na criação do hash, pode usar o comando abaixo:
+
+```bash
+apt update
+apt install -y apache2-utils
 ```
 
 ---
