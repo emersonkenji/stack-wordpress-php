@@ -1,7 +1,6 @@
 version: "3.7"
 
 services:
-
   nginx:
     image: nginx:1.25-alpine
     deploy:
@@ -56,6 +55,7 @@ services:
       PHP_OPCACHE_REVALIDATE_FREQ: "60"
     volumes:
       - wp_data:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini
     networks:
       - nw-wp-internal
       - nw-backend

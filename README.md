@@ -67,6 +67,7 @@ mkdir -p /data/mysql_data_example
 
 # Arquivos WordPress
 mkdir -p /srv/sites/example.com.br
+chown -R 33:33 /srv/sites/example.com.br
 
 # Dump SQL do banco (para restaurar na 1ª inicialização)
 cp seu_dump.sql /srv/sites/example.com.br/example.sql
@@ -227,6 +228,24 @@ docker stack rm traefik-stack
 > ⚠️ Volumes **não** são removidos. Os dados do MySQL e WordPress permanecem nos paths de bind mount.
 
 ---
+
+O Redis está correto:
+
+redis:
+image: redis:7-alpine
+networks: - nw-backend
+
+Como ele está na mesma rede do WordPress, o host para usar no WordPress será:
+
+redis
+
+No wp-config.php do site, coloque:
+
+define('WP_REDIS_HOST', 'redis');
+define('WP_REDIS_PORT', 6379);
+define('WP_CACHE', true);
+
+Depois instale/ative o plugin Redis Object Cache e clique em Enable Object Cache.
 
 ## Atalhos Rápidos (Makefile)
 
