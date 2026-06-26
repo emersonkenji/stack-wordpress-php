@@ -63,13 +63,13 @@ touch /data/letsencrypt_data/acme.json
 chmod 600 /data/letsencrypt_data/acme.json
 
 # MySQL
-mkdir -p /data/mysql_data_takadatintas
+mkdir -p /data/mysql_data_example
 
 # Arquivos WordPress
-mkdir -p /srv/sites/takadatintas.com.br
+mkdir -p /srv/sites/example.com.br
 
 # Dump SQL do banco (para restaurar na 1ª inicialização)
-cp seu_dump.sql /srv/sites/takadatintas.com.br/takadatintas.sql
+cp seu_dump.sql /srv/sites/example.com.br/example.sql
 ```
 
 > **Atenção:** O MariaDB importa o dump apenas na **primeira inicialização** (volume vazio).
@@ -81,14 +81,14 @@ cp seu_dump.sql /srv/sites/takadatintas.com.br/takadatintas.sql
 Edite o arquivo `.env`:
 
 ```env
-DOMAIN_NAME=takadatintas.com.br
-PROJECT_NAME=takadatintas
+DOMAIN_NAME=example.com.br
+PROJECT_NAME=example
 
 MYSQL_PASSWORD=sua_senha_segura
 MYSQL_ROOT_PASSWORD=sua_senha_root
-MYSQL_USER=taka_takadatintas
+MYSQL_USER=taka_example
 
-BACKUP_DATABASE=takadatintas.sql
+BACKUP_DATABASE=example.sql
 WORDPRESS_TABLE_PREFIX=wpog_
 
 # Gerado com: echo $(htpasswd -nb admin SENHA) | sed -e s/\$/\$\$/g
@@ -101,11 +101,11 @@ ADMINER_BASIC_AUTH=admin:$$apr1$$HASH_AQUI
 
 Configure os registros A no seu provedor:
 
-| Hostname                  | Tipo | Valor            |
-| ------------------------- | ---- | ---------------- |
-| `takadatintas.com.br`     | A    | `IP_DO_SERVIDOR` |
-| `www.takadatintas.com.br` | A    | `IP_DO_SERVIDOR` |
-| `db.takadatintas.com.br`  | A    | `IP_DO_SERVIDOR` |
+| Hostname             | Tipo | Valor            |
+| -------------------- | ---- | ---------------- |
+| `example.com.br`     | A    | `IP_DO_SERVIDOR` |
+| `www.example.com.br` | A    | `IP_DO_SERVIDOR` |
+| `db.example.com.br`  | A    | `IP_DO_SERVIDOR` |
 
 ---
 
@@ -168,7 +168,7 @@ docker service logs -f wordpress-stack_wpphpfpm
 
 ## Acessar o Adminer
 
-- **URL:** `https://db.takadatintas.com.br`
+- **URL:** `https://db.example.com.br`
 - Credenciais HTTP: as configuradas em `ADMINER_BASIC_AUTH`
 
 | Campo    | Valor                     |
